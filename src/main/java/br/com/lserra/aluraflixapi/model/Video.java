@@ -21,6 +21,7 @@ public class Video {
 	@NotNull @NotEmpty @Length(min = 5)
 	private String url;
 	
+	public Video() {}
 	
 	public Long getId() {
 		return id;

@@ -24,11 +24,4 @@ public class VideoService {
 		
 	}
 
-	public Video criar(Video video) {
-		return videoRepository.save(video);
-		
-	}
-	
-	
-
 }

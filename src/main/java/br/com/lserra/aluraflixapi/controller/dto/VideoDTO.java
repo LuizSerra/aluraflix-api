@@ -11,6 +11,7 @@ public class VideoDTO {
 	private String descricao;
 	private String url;
 	
+	public VideoDTO() {}
 	public VideoDTO(Video video) {
 		this.id = video.getId();
 		this.titulo = video.getTitulo();
@@ -34,5 +35,5 @@ public class VideoDTO {
 	public static List<VideoDTO> convertToVideoDTOList(List<Video> list) {
 		return list.stream().map(VideoDTO::new).collect(Collectors.toList());
 	}
-			
+				
 }
