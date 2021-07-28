@@ -1,3 +1,10 @@
+use database aluraflix;
+
+insert into categorias (titulo, cor) values ("LIVRE", " #3498db ");
+insert into categorias (titulo, cor) values ("TÉCNICO", " #3498db ");
+insert into categorias (titulo, cor) values ("LAZER", " #3498db ");
+insert into categorias (titulo, cor) values ("INFORMAÇÃO", " #3498db ");
+
 insert into video (titulo, descricao, url) values ("Docker", "Iniciando MySQL com Docker", "https://www.youtube.com/watch?v=1Zpr1vX0wqk");
 insert into video (titulo, descricao, url) values ("Promoção Bumerangue", "PROMOÇÃO LATAMPASS BUMERANGUE & LIVELO 133%", "https://www.youtube.com/watch?v=uYTTovmw3ME");
 insert into video (titulo, descricao, url) values ("Cartão Mercado PAGO", "CARTÃO DE CRÉDITO MP", "https://www.youtube.com/watch?v=Ve9MyFiZkMw");

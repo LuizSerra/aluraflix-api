@@ -1,7 +1,5 @@
 package br.com.lserra.aluraflixapi.controller.dto;
 
-import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Page;
 
 import br.com.lserra.aluraflixapi.model.Video;
@@ -13,6 +11,7 @@ public class VideoDTO {
 	private String url;
 	
 	public VideoDTO() {}
+	
 	public VideoDTO(Video video) {
 		this.id = video.getId();
 		this.titulo = video.getTitulo();

@@ -4,25 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-@Entity(name = "videos")
-public class Video {
+@Entity(name="categorias")
+public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull @NotEmpty @Length(min = 5)
 	private String titulo;
 	@NotNull @NotEmpty @Length(min = 5)
-	private String descricao;
-	@NotNull @NotEmpty @Length(min = 5)
-	private String url;
-		
+	private String cor;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,17 +32,11 @@ public class Video {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDescricao() {
-		return descricao;
+	public String getCor() {
+		return cor;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 	
 	@Override
@@ -63,7 +54,7 @@ public class Video {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Video other = (Video) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,5 +62,7 @@ public class Video {
 			return false;
 		return true;
 	}
+	
+	
 	
 }
