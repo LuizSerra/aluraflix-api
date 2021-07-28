@@ -1,7 +1,8 @@
 package br.com.lserra.aluraflixapi.controller.dto;
 
-import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
 
 import br.com.lserra.aluraflixapi.model.Video;
 
@@ -32,8 +33,8 @@ public class VideoDTO {
 		return url;
 	}
 	
-	public static List<VideoDTO> convertToVideoDTOList(List<Video> list) {
-		return list.stream().map(VideoDTO::new).collect(Collectors.toList());
+	public static Page<VideoDTO> convertToVideoDTOList(Page<Video> videos) {
+		return videos.map(VideoDTO::new);
 	}
 				
 }

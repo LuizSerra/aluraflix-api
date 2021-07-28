@@ -6,8 +6,9 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,8 +37,8 @@ public class VideoController {
 	VideoRepository videoRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<VideoDTO>> listar() {
-		List<VideoDTO> videoDTOList = VideoDTO.convertToVideoDTOList(videoService.listar());
+	public ResponseEntity<Page<VideoDTO>> listar(Pageable pagination) {
+		Page<VideoDTO> videoDTOList = VideoDTO.convertToVideoDTOList(videoService.listar(pagination));
 		return !videoDTOList.isEmpty() ? ResponseEntity.ok(videoDTOList) : ResponseEntity.noContent().build();
 	}
 	
@@ -73,7 +74,6 @@ public class VideoController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> remover(@PathVariable Long id) {
 		Optional<Video> videoOptional = videoRepository.findById(id);
-		Video video;
 		if(videoOptional.isPresent()) {
 			videoRepository.delete(videoOptional.get());
 			return ResponseEntity.ok().build();
