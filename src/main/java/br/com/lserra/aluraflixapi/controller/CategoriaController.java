@@ -36,8 +36,8 @@ public class CategoriaController {
 	CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public ResponseEntity<Page<CategoriaDTO>> listar(Pageable pagination) {
-		Page<CategoriaDTO> categoriaDTOList = CategoriaDTO.convertToCategoriaDTOList(categoriaService.listar(pagination));
+	public ResponseEntity<Page<CategoriaDTO>> listar(String search, Pageable pagination) {
+		Page<CategoriaDTO> categoriaDTOList = CategoriaDTO.convertToCategoriaDTOList(categoriaService.listar(search, pagination));
 		return !categoriaDTOList.isEmpty() ? ResponseEntity.ok(categoriaDTOList) : ResponseEntity.noContent().build();
 	}
 	

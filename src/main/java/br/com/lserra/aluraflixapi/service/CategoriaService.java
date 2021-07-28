@@ -16,8 +16,10 @@ public class CategoriaService {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 
-	public Page<Categoria> listar(Pageable pagination) {
-		return categoriaRepository.findAll(pagination);
+	public Page<Categoria> listar(String search, Pageable pagination) {
+		
+		if(search == null)	return categoriaRepository.findAll(pagination);
+		return categoriaRepository.findByTitulo(search, pagination);
 	}
 
 	public Optional<Categoria> getCategoriaById(Long id) {

@@ -36,8 +36,8 @@ public class VideoController {
 	VideoRepository videoRepository;
 	
 	@GetMapping
-	public ResponseEntity<Page<VideoDTO>> listar(Pageable pagination) {
-		Page<VideoDTO> videoDTOList = VideoDTO.convertToVideoDTOList(videoService.listar(pagination));
+	public ResponseEntity<Page<VideoDTO>> listar(String search, Pageable pagination) {
+		Page<VideoDTO> videoDTOList = VideoDTO.convertToVideoDTOList(videoService.listar(search, pagination));
 		return !videoDTOList.isEmpty() ? ResponseEntity.ok(videoDTOList) : ResponseEntity.noContent().build();
 	}
 	
