@@ -1,6 +1,8 @@
 package br.com.lserra.aluraflixapi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,9 @@ public class Video {
 	private String descricao;
 	@NotNull @NotEmpty @Length(min = 5)
 	private String url;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="categoria_id", nullable = false, columnDefinition = "bigint not null default 1")
+	Categoria categoria;
 		
 	public Long getId() {
 		return id;
@@ -48,6 +53,12 @@ public class Video {
 		this.url = url;
 	}
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
