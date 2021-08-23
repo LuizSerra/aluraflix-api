@@ -14,8 +14,8 @@ import br.com.lserra.aluraflixapi.repository.CategoriaRepository;
 public class CategoriaService {
 
 	@Autowired
-	CategoriaRepository categoriaRepository;
-
+	private CategoriaRepository categoriaRepository;
+	
 	public Page<Categoria> listar(String search, Pageable pagination) {
 		
 		if(search == null)	return categoriaRepository.findAll(pagination);
@@ -26,5 +26,4 @@ public class CategoriaService {
 		return categoriaRepository.findById(id);
 		
 	}
-
 }

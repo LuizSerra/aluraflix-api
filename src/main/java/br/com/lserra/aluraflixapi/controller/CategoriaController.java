@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.lserra.aluraflixapi.controller.dto.CategoriaDTO;
+import br.com.lserra.aluraflixapi.controller.dto.VideoDTO;
 import br.com.lserra.aluraflixapi.model.Categoria;
 import br.com.lserra.aluraflixapi.repository.CategoriaRepository;
 import br.com.lserra.aluraflixapi.service.CategoriaService;
+import br.com.lserra.aluraflixapi.service.VideoService;
 
 @RestController
 @RequestMapping("/categorias")
@@ -32,6 +34,8 @@ public class CategoriaController {
 
 	@Autowired
 	private CategoriaService categoriaService;
+	@Autowired
+	private VideoService videoService;
 	@Autowired
 	CategoriaRepository categoriaRepository;
 	
@@ -42,9 +46,15 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getVideoById(@PathVariable Long id) {
+	public ResponseEntity<?> getCategoriaPorId(@PathVariable Long id) {
 		Optional<Categoria> categoriaEncontrada = categoriaService.getCategoriaById(id);
 		return categoriaEncontrada.isPresent() ? ResponseEntity.ok(new CategoriaDTO(categoriaEncontrada.get())) : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado");  
+	}
+	
+	@GetMapping("/{id}/videos")
+	public ResponseEntity<Page<VideoDTO>> getVideosPorCategoria(@PathVariable Long id, Pageable pagination) {
+		Page<VideoDTO> videoDTOList = VideoDTO.convertToVideoDTOList(videoService.getVideosPorCategoria(id, pagination));
+		return !videoDTOList.isEmpty() ? ResponseEntity.ok(videoDTOList) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping

@@ -25,5 +25,9 @@ public class VideoService {
 		return videoRepository.findById(id);
 
 	}
+	
+	public Page<Video> getVideosPorCategoria(Long id, Pageable pagination) {
+		return videoRepository.findByCategoriaId(id, pagination);
+	}
 
 }

@@ -10,4 +10,6 @@ public interface VideoRepository extends JpaRepository<Video, Long>{
 
 	Page<Video> findByTitulo(String search, Pageable pagination);
 
+	Page<Video> findByCategoriaId(Long id, Pageable pagination);
+
 }
